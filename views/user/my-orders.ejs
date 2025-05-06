@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Orders</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f8f8f8;
+            padding: 20px;
+        }
+        .order-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .order-header {
+            margin-bottom: 10px;
+        }
+        .product-item {
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+        .btn-back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .action-buttons {
+            margin-top: 10px;
+        }
+        .action-buttons button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cancel {
+            background-color: #f44336;
+            color: white;
+        }
+        .return {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .pagination a {
+            padding: 10px 15px;
+            margin: 0 5px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .pagination a.active {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>📦 My Orders</h2>
+
+    <% if (orders.length === 0) { %>
+        <p>You haven't placed any orders yet.</p>
+    <% } else { %>
+        <% orders.forEach(order => { %>
+            <div class="order-card">
+                <div class="order-header">
+                    <strong>🧾 Order ID:</strong> <%= order._id %><br>
+                    <strong>📅 Date:</strong> <%= order.createdAt.toDateString() %><br>
+                    <strong>💳 Payment:</strong> <%= order.paymentMethod %><br>
+                    <strong>💰 Total:</strong> ₹<%= order.totalAmount %><br>
+                    <strong>📦 Status:</strong><% if (order.status === 'Cancelled') { %>
+                        ❌ Cancelled
+                    <% } else if (order.status === 'Cancel Pending') { %>
+                        🕓 Cancel Pending
+                    <% } else { %>
+                        <%= order.status %>
+                    <% } %>
+                </div>
+
+                <% order.items.forEach(item => { %>
+                    <div class="product-item">
+                        <strong>🏷️ <%= item.productId.name %></strong><br>
+                        ₹<%= item.productId.price %> × <%= item.quantity %> = ₹<%= item.productId.price * item.quantity %>
+                    </div>
+                <% }) %>
+                <div class="action-buttons">
+                    <% if (order.status === 'Cancel Pending') { %>
+                        <button class="btn btn-warning" disabled>Cancel Pending</button>
+                    <% } else if (order.status === 'Delivered') { %>
+                        <button class="btn btn-success">Return Order</button>
+                    <% } else if (order.status === 'Cancelled') { %>
+                        <button class="btn btn-success" disabled>Cancelled</button>
+                    <% } else { %>
+                        <form action="/user/cancel-order/<%= order._id %>" method="POST" onsubmit="return confirm('Cancel this order?')">
+                            <button type="submit" class="btn btn-danger">Cancel Order</button>
+                        </form>
+                    <% } %>
+                </div>
+                
+            </div>
+        <% }) %>
+    <% } %>
+
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <a href="/user/my-orders?page=<%= currentPage - 1 %>">&laquo; Previous</a>
+        <% } %>
+
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="/user/my-orders?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+
+        <% if (currentPage < totalPages) { %>
+            <a href="/user/my-orders?page=<%= currentPage + 1 %>">Next &raquo;</a>
+        <% } %>
+    </div>
+
+    <a href="/user/product-list" class="btn-back">← Continue Shopping</a>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cancel Order Requests</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; background: #fff; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #333; color: white; }
+    </style>
+</head>
+<body>
+    <h2>🛑 Cancel Order Requests</h2>
+
+    <% if (cancelOrders.length === 0) { %>
+        <p>No cancel requests found.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th>Products</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% cancelOrders.forEach(order => { %>
+                    <tr>
+                        <td><%= order._id %></td>
+                        <td><%= order.userId.name %></td>
+                        <td>₹<%= order.totalAmount %></td>
+                        <td><%= order.status %></td>
+                        <td>
+                            <ul>
+                                <% order.items.forEach(item => { %>
+                                    <li><%= item.productId.name %> × <%= item.quantity %></li>
+                                <% }) %>
+                            </ul>
+                        </td>
+                        <td>
+                            <form action="/admin/approve-cancel/<%= order._id %>" method="POST" style="display:inline;">
+                                <button type="submit" onclick="return confirm('Approve cancellation for this order?')">✅ Approve Cancel</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</body>
+
+</html>

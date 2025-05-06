@@ -1,0 +1,20 @@
+<div style="text-align: center; padding: 40px;">
+    <h2>🎉 Order Placed Successfully!</h2>
+    <p>Thank you for your purchase. We’re preparing your order now.</p>
+    <div style="margin-top: 30px;">
+        <a href="/user/product-list">
+            <button style="padding: 10px 20px; margin-right: 10px;">🛍️ Continue Shopping</button>
+        </a>
+    
+        <a href="/user/my-orders">
+            <button style="padding: 10px 20px;">📦 View My Orders</button>
+        </a>
+        <% if (orderId) { %>
+            <a href="/user/download-invoice/<%= orderId %>" class="btn">⬇️ Download Invoice</a>
+        <% } %>
+        
+        
+        
+    </div>
+    
+</div>

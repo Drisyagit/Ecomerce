@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Add Product</h2>
+    <form id="productForm" action="/admin/add-product" method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter product name">
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="form-control" placeholder="Enter product description"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control" placeholder="Enter price">
+        </div>
+
+        <div class="form-group">
+            <label>Category</label>
+            <select name="category" class="form-control">
+                <option value="">-- Select Category --</option>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category._id %>"><%= category.name %></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Stock</label>
+            <input type="number" name="stock" class="form-control" placeholder="Enter stock quantity">
+        </div>
+        <div class="form-group">
+        <label for="images">Product Images (4 photos)</label>
+        <input type="file" name="images" multiple accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('productForm').addEventListener('submit', function(event) {
+        const name = document.querySelector('input[name="name"]').value.trim();
+        const price = document.querySelector('input[name="price"]').value;
+        const category = document.querySelector('select[name="category"]').value;
+        const stock = document.querySelector('input[name="stock"]').value;
+
+        if (!name || name.length < 3) {
+            alert('Please enter a valid product name (minimum 3 characters).');
+            event.preventDefault();
+            return;
+        }
+
+        if (!price || price <= 0) {
+            alert('Please enter a valid price.');
+            event.preventDefault();
+            return;
+        }
+
+        if (!category) {
+            alert('Please select a category.');
+            event.preventDefault();
+            return;
+        }
+
+        if (!stock || stock < 0) {
+            alert('Please enter a valid stock quantity.');
+            event.preventDefault();
+            return;
+        }
+    });
+</script>
+
+</body>
+</html>

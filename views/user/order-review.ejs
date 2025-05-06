@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .address-box {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .payment-options {
+            margin-top: 30px;
+        }
+
+        .btn-place-order {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .btn-place-order:hover {
+            background-color: #218838;
+        }
+
+        .btn-back {
+            background-color: #ddd;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <a href="/user/home">🏠 Home</a>
+            <a href="/user/shop">🛒 Shop</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <a href="/user/checkout" class="btn-back">← Back to Address Selection</a>
+
+        <h2 class="section-title">Order Summary</h2>
+
+        <!-- Address Section -->
+        <div class="address-box">
+            <strong>Shipping Address</strong><br>
+            <%= address.name %>, <%= address.houseName %>, <%= address.street %><br>
+            <%= address.city %>, <%= address.district %>, <%= address.state %> - <%= address.pinCode %><br>
+            <strong>Mobile:</strong> <%= address.mobile %><br>
+            <%= address.country %>
+        </div>
+
+        <!-- Cart Items -->
+        <h3 class="section-title">Items</h3>
+        <% items.forEach(item => { %>
+            <div class="item">
+                <strong><%= item.productId.name %></strong><br>
+                ₹<%= item.productId.price %> × <%= item.quantity %><br>
+                <small>Subtotal: ₹<%= item.productId.price * item.quantity %></small>
+            </div>
+        <% }) %>
+
+        <!-- Total -->
+        <div class="total">Total Amount: ₹<%= total %></div>
+
+        <!-- Payment Method -->
+        <form action="/user/place-order" method="POST" class="payment-options">
+            <input type="hidden" name="addressId" value="<%= address._id %>">
+
+            <h3 class="section-title">Select Payment Method</h3>
+            <label><input type="radio" name="paymentMethod" value="cod" required> Cash on Delivery</label><br>
+            <label><input type="radio" name="paymentMethod" value="razorpay" required> Razorpay</label><br>
+
+            <button type="submit" class="btn-place-order">Place Order</button>
+        </form>
+    </div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+</body>
+</html>
+
+<script>
+    document.querySelector("form").addEventListener("submit", async function (e) {
+        const selectedPayment = document.querySelector("input[name='paymentMethod']:checked").value;
+
+        if (selectedPayment === 'razorpay') {
+            e.preventDefault();
+
+            // Embed total from server (EJS)
+            const amountInRupees = <%= JSON.stringify(total) %>; 
+            const amountInPaise = amountInRupees * 100;
+
+            try {
+                const res = await fetch("/user/create-razorpay-order", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ amount: amountInPaise })
+                });
+
+                const order = await res.json();
+
+                const options = {
+                    key: "<%= process.env.RAZORPAY_KEY_ID %>",
+                    amount: order.amount,
+                    currency: "INR",
+                    name: "My Shop",
+                    description: "Order Payment",
+                    order_id: order.id,
+                    handler: async function (response) {
+                        const result = await fetch("/user/verify-payment", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(response)
+                        });
+
+                        const data = await result.json();
+                        if (data.success) {
+                            window.location.href = "/user/order-success";
+                        } else {
+                            alert("Payment verification failed");
+                        }
+                    }
+                };
+
+                const rzp = new Razorpay(options);
+                rzp.open();
+
+            } catch (error) {
+                console.error("Razorpay error:", error);
+                alert("Error processing payment. Please try again.");
+            }
+        }
+    });
+</script>
+
+    

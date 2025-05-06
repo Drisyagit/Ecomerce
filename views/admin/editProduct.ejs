@@ -1,0 +1,74 @@
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary rounded p-4">
+        <h4 class="mb-4 text-center">Edit Product</h4>
+        <form action="/admin/edit-product/<%= product._id %>" method="POST" onsubmit="return validateProductForm()" enctype="multipart/form-data">
+            <div class="form-group mb-3">
+                <label>Product Name</label>
+                <input type="text" name="name" class="form-control" value="<%= product.name %>">
+            </div>
+            <div class="form-group mb-3">
+                <label>Description</label>
+                <textarea name="description" class="form-control"><%= product.description %></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label>Price</label>
+                <input type="number" name="price" class="form-control" value="<%= product.price %>">
+            </div>
+            <div class="form-group mb-3">
+                <label>Category</label>
+                <select name="category" class="form-control">
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category._id %>" <%= product.category && product.category._id.toString() === category._id.toString() ? 'selected' : '' %>>
+                            <%= category.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Stock</label>
+                <input type="number" name="stock" class="form-control" value="<%= product.stock %>">
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" name="status" <%= product.status ? 'checked' : '' %>>
+                <label class="form-check-label">Active</label>
+            </div>
+            <div class="form-group mb-3">
+                <label>Existing Images</label><br>
+                <% if (product.images && product.images.length > 0) { %>
+                    <% product.images.forEach(image => { %>
+                        <img src="/productImages/<%= image %>" width="80" height="80" style="margin: 5px; object-fit: cover; border-radius: 5px;">
+                    <% }) %>
+                <% } else { %>
+                    <p>No images uploaded.</p>
+                <% } %>
+            </div>
+            <div class="form-group mb-3">
+                <label>Upload New Images</label>
+                <input type="file" name="images" class="form-control" multiple accept="image/*">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Update Product</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateProductForm() {
+        const name = document.forms[0]["name"].value.trim();
+        const price = document.forms[0]["price"].value.trim();
+        const stock = document.forms[0]["stock"].value.trim();
+        const category = document.forms[0]["category"].value;
+
+        if (name === "" || price === "" || stock === "" || category === "") {
+            alert("All fields are required!");
+            return false;
+        }
+
+        if (price <= 0 || stock < 0) {
+            alert("Price must be greater than 0 and stock cannot be negative.");
+            return false;
+        }
+
+        return true;
+    }
+</script>

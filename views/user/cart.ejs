@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Shopping Cart</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/user/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/user/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/user/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/user/images/icons/site.html">
+    <link rel="mask-icon" href="/user/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/user/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/user/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/user/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/user/css/style.css">
+    <link rel="stylesheet" href="/user/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/user/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="/user/css/plugins/nouislider/nouislider.css">
+</head>
+
+<style>
+    /* General cart container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Cart title */
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Empty cart message */
+.empty-cart {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 30px;
+}
+
+/* Cart item list */
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 0;
+}
+
+.cart-item-img img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.cart-item-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.cart-item-info p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.cart-item-price,
+.cart-item-subtotal {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.btn-quantity {
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-quantity:hover {
+    background-color: #e0e0e0;
+}
+
+.cart-item-quantity span {
+    font-size: 1.2rem;
+    padding: 0 10px;
+}
+
+/* Cart total section */
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: right;
+}
+
+/* Cart actions (Proceed to Checkout, Clear Cart buttons) */
+.cart-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.cart-actions .btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-actions .btn:hover {
+    background-color: #0056b3;
+}
+
+.cart-actions .btn:focus {
+    outline: none;
+}
+/* Styling for the Delete Button */
+.cart-item-delete {
+    margin-left: 20px;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+
+</style>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-middle sticky-header">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+
+                        <a href="/user/home" class="logo">
+                            <img src="/user/images/logo.png" alt="Molla Logo" width="105" height="25">
+                        </a>
+
+                        <nav class="main-nav">
+                            <ul class="menu sf-arrows">
+                                <li class="megamenu-container active">
+                                    <a href="/user/home" class="sf-with-ul">Home</a>
+                                </li>
+                                <li>
+                                    <a href="/user/product-list" class="sf-with-ul">Shop</a>
+                                </li>
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left -->
+
+                    <div class="header-right">
+                        <div class="header-search">
+                            <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                        </div><!-- End .header-search -->
+                        
+                        <div class="dropdown cart-dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon-shopping-cart"></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="/user/cart">Go to Cart</a>
+                            </div>
+                        </div><!-- End .cart-dropdown -->
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+        </header><!-- End .header -->
+
+        <main class="main">
+            <div class="container">
+                <h2>My Cart</h2>
+
+                <% if (items.length === 0) { %>
+                    <p class="empty-cart">Your cart is empty. Add some products to your cart!</p>
+                <% } else { %>
+                    <ul class="cart-items">
+                        <% items.forEach(item => { %>
+                            <li class="cart-item">
+                                <div class="cart-item-img">
+                                    <img src="/productImages/<%= item.productId.images.length > 0 ? item.productId.images[0] : 'default-image.webp' %>" alt="<%= item.productId.name %>" class="product-image">
+                                </div>
+                                <div class="cart-item-info">
+                                    <h4><%= item.productId.name %></h4>
+                                    <p><%= item.productId.description %></p>
+                                </div>
+                                <div class="cart-item-price">
+                                    ₹<%= item.productId.price %>
+                                </div>
+                                <div class="cart-item-quantity">
+                                    <div class="quantity-controls">
+                                        <button class="btn-quantity" <% if (item.quantity <= 1) { %> disabled <% } %> onclick="window.location.href='/user/decrement-cart/<%= item._id %>';">-</button>
+                                        <span><%= item.quantity %></span>
+                                        <button class="btn-quantity" <% if (item.quantity >= item.productId.stock) { %> disabled <% } %> onclick="window.location.href='/user/increment-cart/<%= item._id %>';">+</button>
+                                    </div>
+                                </div>
+                                <div class="cart-item-subtotal">
+                                    Subtotal: ₹<%= item.productId.price * item.quantity %>
+                                </div>
+                                <div class="cart-item-delete">
+                                    <form action="/user/delete-cart-item" method="POST">
+                                        <input type="hidden" name="itemId" value="<%= item._id %>">
+                                        <button type="submit" class="btn-delete">Delete</button>
+                                    </form>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+
+                    <div class="cart-total">
+                        <h3>Total: ₹<%= total %></h3>
+                    </div>
+
+                    <div class="cart-actions">
+                        <a href="/user/checkout" class="btn">Proceed to Checkout</a>
+                        <a href="/user/clear-cart" class="btn">Clear Cart</a>
+
+                    </div>
+                <% } %>
+            </div><!-- End .container -->
+        </main>
+    </div><!-- End .page-wrapper -->
+</body>
+</html>

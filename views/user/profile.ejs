@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/product.html  22 Nov 2019 09:54:50 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Molla - Bootstrap eCommerce Template</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/user/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/user/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/user/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/user/images/icons/site.html">
+    <link rel="mask-icon" href="/user/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/user/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/user/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/user/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/user/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/user/css/plugins/magnific-popup/magnific-popup.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/user/css/style.css">
+    <link rel="stylesheet" href="/user/css/plugins/nouislider/nouislider.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    h2 {
+        color: #444;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto 20px auto;
+    }
+
+    form div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #c96;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #a75e2a;
+    }
+
+    /* Address Styling */
+    .address-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    .address-item {
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .address-item p {
+        margin: 5px 0;
+        line-height: 1.4;
+    }
+
+    .default-address {
+        color: #28a745;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+    .address-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.edit-btn {
+    background-color: #c96;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: #a85;
+}
+</style>
+
+<body>
+    
+    <div class="page-wrapper">
+        <header class="header">
+          
+
+            <div class="header-middle sticky-header">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+
+                        <a href="index.html" class="logo">
+                            <img src="/user/images/logo.png" alt="Molla Logo" width="105" height="25">
+                        </a>
+
+                        <nav class="main-nav">
+                            <ul class="menu sf-arrows">
+                                <li class="megamenu-container active">
+                                    <a href="/user/home" class="sf-with-ul">Home</a>
+
+                                    
+                                </li>
+                               
+                                <li>
+                                    <a href="/user/product-list" class="sf-with-ul">Product</a>
+
+                                </li>
+                                <li>
+                                    <a href="/user/my-orders" class="sf-with-ul">My-Orders</a>
+
+                                </li>
+                                
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left -->
+                    
+                    
+
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+        </header><!-- End .header -->
+
+        <main class="main">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                <div class="container d-flex align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/user/home">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">profile</li>
+                    </ol>
+
+                   
+                    </nav><!-- End .pager-nav -->
+                    <div class="profile-container">
+        <h2>User Profile</h2>
+        <form action="/user/update-profile" method="POST">
+            <div>
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" value="<%= user.username %>" required>
+            </div>
+        
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            </div>
+        
+            <div>
+                <label for="mobile">Mobile:</label>
+                <input type="text" id="mobile" name="mobile" value="<%= user.mobile ? user.mobile : '' %>" required>
+            </div>
+        
+            <button type="submit">Update Profile</button>
+        
+            <h3>My Addresses:</h3>
+<ul class="address-list">
+    <% addresses.forEach(address => { %>
+        <li class="address-item">
+            <p><strong><%= address.name %></strong></p>
+            <p><%= address.houseName %>, <%= address.street %>, <%= address.city %>, <%= address.district %>, <%= address.state %>, <%= address.pinCode %>, <%= address.country %></p>
+            <p>Mobile: <%= address.mobile %></p>
+            <% if (address.isDefault) { %>
+                <p class="default-address">Default Address</p>
+            <% } %>
+
+            <!-- Edit and Delete Buttons -->
+            <div class="address-actions">
+                <a href="/user/edit-address/<%= address._id %>" class="edit-btn">Edit</a>
+                <form action="/user/delete-address/<%= address._id %>" method="POST" >
+                    <button type="submit" >Delete</button>
+                </form>
+            </div>
+        </li>
+    <% }) %>
+</ul>
+
+            
+        </form>
+       
+        <form action="/user/add-address" method="GET">
+            <input type="hidden" name="redirectTo" value="profile">
+            <button type="submit" class="add-address-btn">Add Address</button>
+        </form>
+            </div>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="container">
+                    <div class="product-details-top">
+                       
+                    </div><!-- End .owl-carousel -->
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+        <footer class="footer">
+        	<div class="footer-middle">
+	            <div class="container">
+	            	<div class="row">
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget widget-about">
+	            				<img src="/user/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+	            				<p>Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
+
+	            				<div class="social-icons">
+	            					<a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+	            				</div><!-- End .soial-icons -->
+	            			</div><!-- End .widget about-widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+	            					<li><a href="about.html">About Molla</a></li>
+	            					<li><a href="#">How to shop on Molla</a></li>
+	            					<li><a href="#">FAQ</a></li>
+	            					<li><a href="contact.html">Contact us</a></li>
+	            					<li><a href="login.html">Log in</a></li>
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+	            					<li><a href="#">Payment Methods</a></li>
+	            					<li><a href="#">Money-back guarantee!</a></li>
+	            					<li><a href="#">Returns</a></li>
+	            					<li><a href="#">Shipping</a></li>
+	            					<li><a href="#">Terms and conditions</a></li>
+	            					<li><a href="#">Privacy Policy</a></li>
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+	            					<li><a href="#">Sign In</a></li>
+	            					<li><a href="cart.html">View Cart</a></li>
+	            					<li><a href="#">My Wishlist</a></li>
+	            					<li><a href="#">Track My Order</a></li>
+	            					<li><a href="#">Help</a></li>
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+	            	</div><!-- End .row -->
+	            </div><!-- End .container -->
+	        </div><!-- End .footer-middle -->
+
+	        <div class="footer-bottom">
+	        	<div class="container">
+	        		<p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+	        		<figure class="footer-payments">
+	        			<img src="/user/images/payments.png" alt="Payment methods" width="272" height="20">
+	        		</figure><!-- End .footer-payments -->
+	        	</div><!-- End .container -->
+	        </div><!-- End .footer-bottom -->
+        </footer><!-- End .footer -->
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Sticky Bar -->
+    
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+    <div class="mobile-menu-container">
+        <div class="mobile-menu-wrapper">
+            <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+            <form action="#" method="get" class="mobile-search">
+                <label for="mobile-search" class="sr-only">Search</label>
+                <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+                <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+            </form>
+            
+            <nav class="mobile-nav">
+                <ul class="mobile-menu">
+                    <li class="active">
+                        <a href="index.html">Home</a>
+
+                        <ul>
+                            <li><a href="index-1.html">01 - furniture store</a></li>
+                            <li><a href="index-2.html">02 - furniture store</a></li>
+                            <li><a href="index-3.html">03 - electronic store</a></li>
+                            <li><a href="index-4.html">04 - electronic store</a></li>
+                            <li><a href="index-5.html">05 - fashion store</a></li>
+                            <li><a href="index-6.html">06 - fashion store</a></li>
+                            <li><a href="index-7.html">07 - fashion store</a></li>
+                            <li><a href="index-8.html">08 - fashion store</a></li>
+                            <li><a href="index-9.html">09 - fashion store</a></li>
+                            <li><a href="index-10.html">10 - shoes store</a></li>
+                            <li><a href="index-11.html">11 - furniture simple store</a></li>
+                            <li><a href="index-12.html">12 - fashion simple store</a></li>
+                            <li><a href="index-13.html">13 - market</a></li>
+                            <li><a href="index-14.html">14 - market fullwidth</a></li>
+                            <li><a href="index-15.html">15 - lookbook 1</a></li>
+                            <li><a href="index-16.html">16 - lookbook 2</a></li>
+                            <li><a href="index-17.html">17 - fashion store</a></li>
+                            <li><a href="index-18.html">18 - fashion store (with sidebar)</a></li>
+                            <li><a href="index-19.html">19 - games store</a></li>
+                            <li><a href="index-20.html">20 - book store</a></li>
+                            <li><a href="index-21.html">21 - sport store</a></li>
+                            <li><a href="index-22.html">22 - tools store</a></li>
+                            <li><a href="index-23.html">23 - fashion left navigation store</a></li>
+                            <li><a href="index-24.html">24 - extreme sport store</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="category.html">Shop</a>
+                        <ul>
+                            <li><a href="category-list.html">Shop List</a></li>
+                            <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                            <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                            <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
+                            <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
+                            <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
+                            <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
+                            <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="#">Lookbook</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="product.html" class="sf-with-ul">Product</a>
+                        <ul>
+                            <li><a href="product.html">Default</a></li>
+                            <li><a href="product-centered.html">Centered</a></li>
+                            <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
+                            <li><a href="product-gallery.html">Gallery</a></li>
+                            <li><a href="product-sticky.html">Sticky Info</a></li>
+                            <li><a href="product-sidebar.html">Boxed With Sidebar</a></li>
+                            <li><a href="product-fullwidth.html">Full Width</a></li>
+                            <li><a href="product-masonry.html">Masonry Sticky Info</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                        <ul>
+                            <li>
+                                <a href="about.html">About</a>
+
+                                <ul>
+                                    <li><a href="about.html">About 01</a></li>
+                                    <li><a href="about-2.html">About 02</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="contact.html">Contact</a>
+
+                                <ul>
+                                    <li><a href="contact.html">Contact 01</a></li>
+                                    <li><a href="contact-2.html">Contact 02</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="login.html">Login</a></li>
+                            <li><a href="faq.html">FAQs</a></li>
+                            <li><a href="404.html">Error 404</a></li>
+                            <li><a href="coming-soon.html">Coming Soon</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+
+                        <ul>
+                            <li><a href="blog.html">Classic</a></li>
+                            <li><a href="blog-listing.html">Listing</a></li>
+                            <li>
+                                <a href="#">Grid</a>
+                                <ul>
+                                    <li><a href="blog-grid-2cols.html">Grid 2 columns</a></li>
+                                    <li><a href="blog-grid-3cols.html">Grid 3 columns</a></li>
+                                    <li><a href="blog-grid-4cols.html">Grid 4 columns</a></li>
+                                    <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Masonry</a>
+                                <ul>
+                                    <li><a href="blog-masonry-2cols.html">Masonry 2 columns</a></li>
+                                    <li><a href="blog-masonry-3cols.html">Masonry 3 columns</a></li>
+                                    <li><a href="blog-masonry-4cols.html">Masonry 4 columns</a></li>
+                                    <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Mask</a>
+                                <ul>
+                                    <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
+                                    <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Single Post</a>
+                                <ul>
+                                    <li><a href="single.html">Default with sidebar</a></li>
+                                    <li><a href="single-fullwidth.html">Fullwidth no sidebar</a></li>
+                                    <li><a href="single-fullwidth-sidebar.html">Fullwidth with sidebar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="elements-list.html">Elements</a>
+                        <ul>
+                            <li><a href="elements-products.html">Products</a></li>
+                            <li><a href="elements-typography.html">Typography</a></li>
+                            <li><a href="elements-titles.html">Titles</a></li>
+                            <li><a href="elements-banners.html">Banners</a></li>
+                            <li><a href="elements-product-category.html">Product Category</a></li>
+                            <li><a href="elements-video-banners.html">Video Banners</a></li>
+                            <li><a href="elements-buttons.html">Buttons</a></li>
+                            <li><a href="elements-accordions.html">Accordions</a></li>
+                            <li><a href="elements-tabs.html">Tabs</a></li>
+                            <li><a href="elements-testimonials.html">Testimonials</a></li>
+                            <li><a href="elements-blog-posts.html">Blog Posts</a></li>
+                            <li><a href="elements-portfolio.html">Portfolio</a></li>
+                            <li><a href="elements-cta.html">Call to Action</a></li>
+                            <li><a href="elements-icon-boxes.html">Icon Boxes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav><!-- End .mobile-nav -->
+
+            <div class="social-icons">
+                <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+            </div><!-- End .social-icons -->
+        </div><!-- End .mobile-menu-wrapper -->
+    </div><!-- End .mobile-menu-container -->
+
+    <!-- Sign in / Register Modal -->
+    
+
+    <!-- Plugins JS File -->
+    <script src="/user/js/jquery.min.js"></script>
+    <script src="/user/js/bootstrap.bundle.min.js"></script>
+    <script src="/user/js/jquery.hoverIntent.min.js"></script>
+    <script src="/user/js/jquery.waypoints.min.js"></script>
+    <script src="/user/js/superfish.min.js"></script>
+    <script src="/user/js/owl.carousel.min.js"></script>
+    <script src="/user/js/bootstrap-input-spinner.js"></script>
+    <script src="/user/js/jquery.elevateZoom.min.js"></script>
+    <script src="/user/js/bootstrap-input-spinner.js"></script>
+    <script src="/user/js/jquery.magnific-popup.min.js"></script>
+    <!-- Main JS File -->
+    <script src="/user/js/main.js"></script>
+</body>
+
+
+<!-- molla/product.html  22 Nov 2019 09:55:05 GMT -->
+</html>
